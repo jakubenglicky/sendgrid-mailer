@@ -7,7 +7,7 @@ sgMail.setApiKey(process.env.token)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/api/send-mail', (req, res) => {
+app.post('/api', (req, res) => {
 
 	let data = req.body;
 
@@ -22,12 +22,12 @@ app.post('/api/send-mail', (req, res) => {
 	sgMail
 		.send(msg)
 		.then(() => {
-			res.json({ error: 0});
+			res.json({ error: 0 });
 		})
 		.catch((error) => {
-			res.json({ error: 1});
+			res.json({ error: 1 });
 			console.log(error);
 		})
 })
 
-module.exports = app;
+module.exports = app
