@@ -7,7 +7,7 @@ sgMail.setApiKey(process.env.token)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/api', (req, res) => {
+app.post('/send-mail', (req, res) => {
 
 	let data = req.body;
 
