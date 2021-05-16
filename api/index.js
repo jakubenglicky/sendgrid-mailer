@@ -1,8 +1,33 @@
 const app = require('express')()
+const bodyParser = require('body-parser');
 
-app.get('/api', (req, res) => {
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.token)
 
-	res.end(`Hello! Go to item`)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.post('/send-mail', (req, res) => {
+
+	let data = req.body;
+
+	const msg = {
+		to: data.to,
+		from: process.env.from,
+		subject: data.subject,
+		text: data.text,
+		html: data.html,
+	}
+
+	sgMail
+		.send(msg)
+		.then(() => {
+			res.json({ error: 0});
+		})
+		.catch((error) => {
+			res.json({ error: 1});
+			console.log(error);
+		})
 })
 
-module.exports = app
+module.exports = app;
