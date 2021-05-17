@@ -12,7 +12,7 @@ app.post('/api', (req, res) => {
 	let data = req.body;
 
 	const msg = {
-		to: data.to,
+		to: process.env.to ? process.env.to : data.to,
 		from: process.env.from,
 		subject: data.subject,
 		text: data.text,
