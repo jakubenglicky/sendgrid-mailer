@@ -1,5 +1,8 @@
 const app = require('express')()
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
+app.use(cors());
 
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.token)
