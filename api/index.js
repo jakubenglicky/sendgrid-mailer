@@ -16,6 +16,9 @@ app.post('/api', (req, res) => {
 
 	const msg = {
 		to: process.env.to ? process.env.to : data.to,
+		headers: {
+			"Reply-To": data.email,
+		},
 		from: process.env.from,
 		subject: data.subject,
 		text: data.text,
